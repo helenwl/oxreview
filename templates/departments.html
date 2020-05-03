@@ -7,7 +7,7 @@
 {% block main %}
     <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
       <h2 class="w3-wide">General Department Reviews</h2>
-  <p> Search for your department. It should be on the list below.</p>
+  <p> Search for your department. It should be on the list below. If not, please email us so we can add the department to the list.</p>
 
     <form action="{{ url_for('departments') }}" method="get">
       <div class="form-group container" style="margin-right:auto;
@@ -36,7 +36,7 @@
         </table>
       {% else %}
       <h4 style="color:#141A77">No questions have been found that match your query. Please let us know so we
-        can the department to the list of reviews.
+        can add the department to the list of reviews.
       </h4>
 
       {% endif %}
@@ -79,4 +79,3 @@
 </table>
     {% endif %}
     {% endblock %}
-
