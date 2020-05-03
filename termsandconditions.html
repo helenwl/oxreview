@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+h2{text-align: center;}
+body {font-family: Arial, Helvetica, sans-serif;
+
+
+  }
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+/* Add a background color when the inputs get focus */
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #141A77;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+
+}
+
+button:hover {
+  opacity: 0.8;
+  color: navy;
+}
+/* Extra styles for the cancel button */
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #f44336;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add padding to container elements */
+.container {
+  padding: 16px;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+  position: relative;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+/* Style the horizontal ruler */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)}
+  to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+  from {transform: scale(0)}
+  to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+h2, p{color:#141A77}
+
+.wrapper {
+    text-align: center;
+
+}
+
+.button {
+  margin:auto;
+  display: flex;
+ justify-content: center;
+ align-items: center;
+ margin: center
+
+}
+</style>
+</head>
+<body>
+
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+   <ul class="flashes">
+      {% for message in messages %}
+       <div class="message_flash" style="color:red">{{ message }}</div>
+      {% endfor %}
+  </ul>
+  {% endif %}
+  {% endwith %}
+<div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
+  <h2 class="w3-wide">theOXREVIEW: Terms and Conditions</h2>
+  <p class="w3-opacity"><i>Students for students</i></p>
+  <p class="w3-justify">
+    <h2><strong>Terms and Conditions</strong></h2>
+
+  <p>Welcome to theOXREVIEW! Sorry this is long, but you know how it is, we've got to put it in....</p>
+
+  <p>These terms and conditions outline the rules and regulations for the use of theOXREVIEW's Website, located at theoxreview.com.</p>
+
+  <p>By accessing this website we assume you accept these terms and conditions. Do not continue to use theOXREVIEW if you do not agree to take all of the terms and conditions stated on this page.</p>
+
+  <p>The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and all Agreements: "Client", "You" and "Your" refers to you, the person log on this website and compliant to the Company’s terms and conditions. "The Company", "Ourselves", "We", "Our" and "Us", refers to our Company. "Party", "Parties", or "Us", refers to both the Client and ourselves. All terms refer to the offer, acceptance and consideration of payment necessary to undertake the process of our assistance to the Client in the most appropriate manner for the express purpose of meeting the Client’s needs in respect of provision of the Company’s stated services, in accordance with and subject to, prevailing law of Netherlands. Any use of the above terminology or other words in the singular, plural, capitalisation and/or he/she or they, are taken as interchangeable and therefore as referring to same.</p>
+
+  <h3><strong>Cookies</strong></h3>
+
+  <p>We do not employ the use of cookies (we don't know how to and are not interested in it!).</p>
+
+  <p>Some of our affiliate/advertising partners may also use cookies. But we have no advertising partners currently so don't worry.</p>
+
+  <h3><strong>License</strong></h3>
+
+  <p>Unless otherwise stated, theOXREVIEW and/or its licensors own the intellectual property rights for all material on theOXREVIEW. All intellectual property rights are reserved. You may access this from theOXREVIEW for your own personal
+    use subjected to restrictions set in these terms and conditions.</p>
+
+  <p>You must not:</p>
+  <ul>
+      <li>Republish material from theOXREVIEW</li>
+      <li>Sell, rent or sub-license material from theOXREVIEW</li>
+      <li>Reproduce, duplicate or copy material from theOXREVIEW</li>
+      <li>Redistribute content from theOXREVIEW</li>
+  </ul>
+
+  <p>This Agreement shall begin on the date hereof.</p>
+
+  <p>Parts of this website offer an opportunity for users to post and exchange opinions and information in certain areas of the website. theOXREVIEW does not filter, edit, publish or review Comments prior to their presence on the website.
+    Comments do not reflect the views and opinions of theOXREVIEW,its agents and/or affiliates.
+    Comments reflect the views and opinions of the person who post their views and opinions.
+    To the extent permitted by applicable laws, theOXREVIEW shall not be liable for the Comments or for any liability,
+    damages or expenses caused and/or suffered as a result of any use of and/or posting of and/or
+    appearance of the Comments on this website. </p>
+
+  <p>theOXREVIEW reserves the right to monitor all Comments and to remove any Comments which can be considered
+    inappropriate, offensive or causes breach of these Terms and Conditions.</p>
+
+  <p>You warrant and represent that:</p>
+
+  <ul>
+      <li>You are entitled to post the Comments on our website and have all necessary licenses and consents to do so;</li>
+      <li>The Comments do not invade any intellectual property right, including without limitation copyright, patent or
+        trademark of any third party;</li>
+      <li>The Comments do not contain any defamatory, libelous, offensive, indecent or otherwise unlawful material
+        which is an invasion of privacy</li>
+      <li>The Comments will not be used to solicit or promote business or custom or present commercial activities or unlawful activity.</li>
+  </ul>
+
+  <p>No use of theOXREVIEW's logo or other artwork will be allowed for linking absent a trademark license agreement.</p>
+
+  <h3><strong>iFrames</strong></h3>
+
+  <p>Without prior approval and written permission, you may not create frames around our Webpages that alter in
+    any way the visual presentation or appearance of our Website.</p>
+
+  <h3><strong>Content Liability</strong></h3>
+
+  <p>We shall not be hold responsible for any content that appears on your Website. You agree to protect and
+    defend us against all claims that is rising on your Website. No link(s) should appear on any Website that may
+    be interpreted as libelous, obscene or criminal, or which infringes, otherwise violates, or advocates the infringement or other violation of, any third party rights.</p>
+
+  <h3><strong>Your Privacy</strong></h3>
+
+  <p>We will never sell your data or pass it onto a 3rd party. You can always request to see all the data we hold linked to your account.
+  The nature of the data will be: the questions you ask the online community, and the reviews you leave.</p>
+
+
+  <h3><strong>Removal of links from our website</strong></h3>
+
+  <p>If you find any link on our Website that is offensive for any reason, you are free to contact and inform us any moment. We will consider requests to remove links but we are not obligated to or so or to respond to you directly.</p>
+
+  <p>We do not ensure that the information on this website is correct, we do not warrant its completeness or accuracy; nor do we promise to ensure that the website remains available or that the material on the website is kept up to date.</p>
+
+  <h3><strong>Disclaimer</strong></h3>
+
+  <p>To the maximum extent permitted by applicable law, we exclude all representations, warranties and conditions relating to our website and the use of this website. Nothing in this disclaimer will:</p>
+
+  <ul>
+      <li>limit or exclude our or your liability for death or personal injury;</li>
+      <li>limit or exclude our or your liability for fraud or fraudulent misrepresentation;</li>
+      <li>limit any of our or your liabilities in any way that is not permitted under applicable law; or</li>
+      <li>exclude any of our or your liabilities that may not be excluded under applicable law.</li>
+  </ul>
+
+  <p>The limitations and prohibitions of liability set in this Section and elsewhere in this disclaimer: (a) are subject to the preceding paragraph; and (b) govern all liabilities arising under the disclaimer, including liabilities arising in contract, in tort and for breach of statutory duty.</p>
+
+  <p>As long as the website and the information and services on the website are provided free of charge, we will not be liable for any loss or damage of any nature.</p> </p>
+
+</div>
+<div class="wrapper">
+  <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;" class="button"><a href="{{ url_for('login') }}">Login</a></button>
+</div>
+
+<div id="id02" class="modal">
+  <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+</div>
+<!--
+  <form class="modal-content animate" action="{{ url_for('login') }}" method="post">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="radcam.jpg" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container form-group">
+      <label for="input-name-email"><b>Username</b></label>
+      <input type="text" class="form-control" id="input-name-email" name="name_email" placeholder="Enter your name or email" required>
+
+      <label for="input-password"><b>Password</b></label>
+      <input type="password" class="form-control" id="input-password" name="password" placeholder="Enter password" required>
+
+      <button type="submit">Log In</button>
+      <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label>
+    </div>
+
+    <div class="container form-group" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+     <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+  </form> -->
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+<script>
+// Get the modal
+var modal = document.getElementById('id02');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+<div class="wrapper">
+  <button onclick="document.getElementById('id02').style.display='block'" style="width:auto;" class="button"><a href="{{ url_for('register') }}">Sign Up</a></button>
+</div>
+<div id="id02" class="modal">
+  <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+<!--
+  <form class="modal-content" action="{{ url_for('register') }}" method="post">
+    <div class="container form-group">
+      <h1>Sign Up</h1>
+      <p>Please fill in this form to create an account.</p>
+      <hr>
+      <label for="input-email"><b>Email</b></label>
+      <input type="email" class="form-control" id="input-email" name="email" placeholder="Enter your email" required>
+
+      <label for="input-password1">Password</label>
+      <input type="password" class="form-control" id="input-password1" name="pass1" placeholder="Enter password" required oninput="validatePassLength(this)">
+      <small class="form-text text-muted">Your password should be at least 6 symbols long.</small>
+
+      <label for="input-password2"><b>Repeat Password</b></label>
+      <input type="password" class="form-control" id="input-password2" name="pass2" placeholder="Enter password again" required oninput="validatePasses(this)">
+
+     <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+
+      <div class="clearfix">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+        <button type="submit" class="signupbtn">Sign Up</button>
+      </div>
+    </div>
+  </form> -->
+</div>
+
+<div class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home" style="background-image: url('skyline.jpg');">
+  <img class="w3-image" src="/static/images/skyline.jpg" alt="Architecture" width="1500" height="70"></img></div>
+
+</body>
