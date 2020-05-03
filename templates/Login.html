@@ -188,19 +188,22 @@ h2, p{color:#141A77}
   {% endwith %}
 <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
   <h2 class="w3-wide">theOXREVIEW</h2>
-  <p class="w3-opacity"><i>Students for students</i></p>
-  <p class="w3-justify">Whilst theOXREVIEW has no official affiliation with Oxford University, it is a platform created for the undergraduate population.
-  As a student, it's sometimes hard to know which optional modules to pick, or which options are seriously not recommended by past years, or to know who would be best to go to within
-college for help with an academic or pastoral problem. College mums and dads do a great job, but theOXREVIEW aims to be a much wider platform on which students can informally review tutors, lecture courses, and give
-helpful advice to others in their year/in the years below (something that has been done by word of mouth before!) In order to be a helpful community, we need users
-to also give advice/reviews as well, and encourage you to write about your experiences for the student community!</p>
+  <p class="w3-opacity"><i>What is theOXREVIEW?</i></p>
+  <p class="w3-justify">theOXREVIEW has no official affiliation with Oxford University. It is simply a platform created for the undergraduate population.
+
+College mums and dads do a great job, but the aim of theOXREVIEW is to be a much wider platform on which students can <b>informally and anonymously review tutors, lecture courses, and give
+helpful advice to others in their year/in the years below </b> (something that has been done by word of mouth before!).</p>
+<p class="w3-justify"> You need to register to access this content, as it's only for students of the university. If you're just curious, you can access (just) our homepage via the preview button below.</p>
 
 </div>
-<div class="wrapper">
+<div class="wrapper w3-padding-large">
+  <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;" class="button"><a href="{{ url_for('landingpage') }}">Preview</a></button>
+</div>
+<div class="wrapper w3-padding-large">
   <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;" class="button"><a href="{{ url_for('login') }}">Login</a></button>
 </div>
 
-<div id="id02" class="modal">
+<div id="id02" class="modal wrapper w3-padding-large">
   <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
 </div>
 <!--
