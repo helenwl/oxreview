@@ -19,6 +19,8 @@
       <button type="submit" class="w3-button navy w3-section btn btn-primary">
         <i class="fa fa-paper-plane"></i> Search</button>
     </form>
+    <button class="w3-button navy w3-section btn btn-primary"><a href="#add">
+      <i class="fa fa-plus-square"></i>  Add a lecture course that hasn't been reviewed before</a></button>
     {% if has_query %}
       {% if result %}
         <table class="w3-table-all table-striped body container">
@@ -46,10 +48,10 @@
         the course you're searching for hasn't been reviewed yet. If you want to add a lecture course to the
         list, then add an entry to our database. You'll be the first person to review the course.
       </h4>
-      <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
+      <div class="w3-container w3-content" style="max-width:800px" id="add">
           <h3 class="w3-wide w3-center navy">Add a lecture course to our database</h3>
       </div>
-      <div class="w3-container w3-padding-64 w3-theme-l5" id="contact">
+      <div class="w3-container w3-theme-l5" id="add">
 
 <p> If you make a mistake when adding information, then email us to let us know (see the bottom of the page), and we'll fix it for you. </p>
             <form class="w3-container w3-card-4 w3-padding-16 w3-white w3-center" action="{{ url_for('addsubject')}}" method="post">
@@ -61,18 +63,39 @@
               <div class="form-group">
                   <label for="input-rating">Choose the subject</label>
                   <select id="input-rating" class="form-control" name="subject">
-                    <option selected>Biochemistry</option>
-                    <option>Biomedical Sciences</option>
-                    <option>History</option>
-                    <option>English</option>
-                    <option>Maths</option>
-                    <option>Materials Science</option>
-                    <option>Physics</option>
-                    <option>Chemistry</option>
-                    <option>Geography</option>
-                    <option>Psychology</option>
-                    <option>Classics</option>
-
+<option selected>Archaeology and Anthropology</option>
+<option>Biochemistry</option>
+<option>Biology</option>
+<option>Biomedical Sciences</option>
+<option>Chemistry</option>
+<option>Classical Archaeology and Ancient History</option>
+<option>Classics</option>
+<option>Computer Science</option>
+<option>Earth Sciences</option>
+<option>Economics and Management</option>
+<option>Engineering Science</option>
+<option>English</option>
+<option>Fine Art</option>
+<option>Geography</option>
+<option>History</option>
+<option>History of Art</option>
+<option>Human Sciences</option>
+<option>Law (Jurisprudence)</option>
+<option>Linguistics</option>
+<option>Materials Science</option>
+<option>Mathematics</option>
+<option>Mathematics and Statistics</option>
+<option>Medicine</option>
+<option>Modern Languages</option>
+<option>Music</option>
+<option>Oriental Studies</option>
+<option>Philosophy</option>
+<option>Physics</option>
+<option>Politics</option>
+<option>Economics</option>
+<option>Pyschology</option>
+<option>Theology</option>
+<option>Religion</option>
                   </select>
               </div>
               <div class="form-group">
@@ -143,6 +166,79 @@
   {% endfor %}
 </tbody>
 </table>
+
+<div class="w3-container w3-content" style="max-width:800px" id="add" name="add">
+    <h3 class="w3-wide w3-center navy">Add a lecture course to our database</h3>
+</div>
+<div class="w3-container  w3-theme-l5">
+
+<p> If you make a mistake when adding information, then email us to let us know (see the bottom of the page), and we'll fix it for you. </p>
+      <form class="w3-container w3-card-4 w3-padding-16 w3-white w3-center" action="{{ url_for('addsubject')}}" method="post">
+
+        <div class="w3-section form-group" >
+          <label for="input-review">Lecture Course Information</label>
+          <input class="w3-input form-control" id="input-name" type="text" name="course_name" rows="5" required placeholder="Name of lecture series" required>
+        </div>
+        <div class="form-group">
+            <label for="input-rating">Choose the subject</label>
+            <select id="input-rating" class="form-control" name="subject">
+<option selected>Archaeology and Anthropology</option>
+<option>Biochemistry</option>
+<option>Biology</option>
+<option>Biomedical Sciences</option>
+<option>Chemistry</option>
+<option>Classical Archaeology and Ancient History</option>
+<option>Classics</option>
+<option>Computer Science</option>
+<option>Earth Sciences</option>
+<option>Economics and Management</option>
+<option>Engineering Science</option>
+<option>English</option>
+<option>Fine Art</option>
+<option>Geography</option>
+<option>History</option>
+<option>History of Art</option>
+<option>Human Sciences</option>
+<option>Law (Jurisprudence)</option>
+<option>Linguistics</option>
+<option>Materials Science</option>
+<option>Mathematics</option>
+<option>Mathematics and Statistics</option>
+<option>Medicine</option>
+<option>Modern Languages</option>
+<option>Music</option>
+<option>Oriental Studies</option>
+<option>Philosophy</option>
+<option>Physics</option>
+<option>Politics</option>
+<option>Economics</option>
+<option>Pyschology</option>
+<option>Theology</option>
+<option>Religion</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="input-lecturer">Name of lecturer(s)</label>
+          <input class="w3-input form-control" id="input-lecturer" type="text" name="lecturer" required placeholder="Name of lecturer for this course." required>
+        </div>
+        <hr>
+        <div class="form-group">
+            <label for="input-year">Year of the course this lecture is delivered in</label>
+            <select id="input-year" class="form-control" name="year_of_study">
+              <option selected>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+
+            </select>
+        </div>
+
+      <button type="submit" class="w3-button w3-right w3-theme navy" style="color:white">Send</button>
+      </form>
+    </div>
+
   {% endif %}
     {% endblock %}
 
