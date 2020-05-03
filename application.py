@@ -11,9 +11,13 @@ from datetime import datetime
 import datetime
 from jinja2 import Template
 from jinja2 import Environment
+#from flask_login import LoginManager
+#from flask_bcrypt import Bcrypt
+#from flask_mail import Mail, Message
 
 
 app = Flask(__name__)
+
 
 # Check for environment variable
 if not os.getenv("DATABASE_URL"):
@@ -22,11 +26,24 @@ if not os.getenv("DATABASE_URL"):
 # Configure session to use filesystem
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
-Session(app)
 
+#app.config['MAIL_SERVER']='smtp.gmail.com'
+#app.config['MAIL_PORT'] = 587
+#app.config['MAIL_USERNAME'] = 'theoxreview@gmail.com'
+#app.config['MAIL_PASSWORD'] = 'PASSWORD IN HERE'
+#app.config['MAIL_USE_TLS'] = True
+#app.config['MAIL_USE_SSL'] = False
+Session(app)
+#mail = Mail(app)
 # Set up database
 engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
+
+#def send_email(subject, recipients, text_body, html_body):
+#    msg = Message(subject, recipients=recipients)
+#    msg.body = text_body
+#    msg.html = html_body
+#    mail.send(msg)
 
 
 # Home route
@@ -59,7 +76,10 @@ def register():
             db.execute('INSERT INTO users (email, subject, college, matriculation_year, password, registered_on) VALUES ( :email, :subject, :college, :matriculation_year, :password, :registered_on)',
                        {'email': email, 'subject': subject, 'college': college, 'matriculation_year': matriculation_year, 'registered_on':registered_on, 'password': generate_password_hash(request.form.get('pass1'))})
             db.commit()
-            print(registered_on)
+#            send_email('theOXREVIEW Registration',
+#                           ['email to send to'],
+#                           'Thanks for registering with Kennedy Family Recipes!',
+#                           '<h3>Thanks for registering with Kennedy Family Recipes!</h3>')
             flash('You have successfully registered! Now you may log in', 'success')
             return render_template('register.html', user_id=session.get('user_id'))
 
@@ -90,13 +110,16 @@ def login():
 #bringing the logged in user to the landing page
 @app.route('/landingpage/')
 def landingpage():
-    if session.get('user_id') is None:
-        flash('theOXREVIEW is for students of Oxford only. Please log in to access this webpage.')
-        return render_template('Login.html', user_id=session.get('user_id'))
-    else:
+    #if session.get('user_id') is None:
+    #    flash('theOXREVIEW is for students of Oxford only. Please log in to access this webpage.')
+    #    return render_template('Login.html', user_id=session.get('user_id'))
+    #else:
         logged_in = session.get('user_id') is not None
         return render_template('landingpage.html', user_id=session.get('user_id'), logged_in=logged_in)
 
+@app.route('/register/termsandconditions/')
+def termsandconditions():
+    return render_template('termsandconditions.html')
 # Log out user and return to home page
 @app.route('/logout/')
 def logout():
@@ -159,21 +182,20 @@ def postquestion():
 
             category= request.form.get('category')
             question= request.form.get('question')
+            user_details= request.form.get('user_details')
             asked_on=datetime.datetime.now().strftime("%d-%b-%Y at %H:%M")
 
 
-            db.execute('INSERT INTO questions (category, question, asked_on, user_id) VALUES (:category, :question, :asked_on, :user_id)',
-                            {'category': category, 'question': question, 'asked_on':asked_on, 'user_id':session.get('user_id')})
+            db.execute('INSERT INTO questions (category, question, asked_on, user_details, user_id) VALUES (:category, :question, :asked_on, :user_details, :user_id)',
+                            {'category': category, 'question': question, 'asked_on':asked_on, 'user_details':user_details, 'user_id':session.get('user_id')})
             db.commit()
 
 
-        #    result3 = db.execute('SELECT * FROM questions WHERE questions.question= :question', {'question': question}
-        #                    ).fetchall()
-            result3 = db.execute('SELECT question, category, asked_on, college, matriculation_year, subject, users.id FROM questions JOIN users ON (users.id = questions.user_id) WHERE questions.question= :question', {'question': question}
-                        ).fetchall()
-            already_submit = session.get('user_id') in [result3.id for result3 in result3]
+            result3 = db.execute('SELECT * FROM questions WHERE questions.question= :question', {'question': question}
+            ).fetchall()
+
         #    already_submit = session.get('user_id') in [question.id for item in result3]
-            return render_template('questions.html', result3=result3, user_id=session.get('user_id'), logged_in=logged_in, already_submit=already_submit)
+            return render_template('questions.html', result3=result3, user_id=session.get('user_id'), logged_in=logged_in)
 # search for a question/
 @app.route('/question/', methods=['POST', 'GET'])
 def question():
@@ -191,14 +213,16 @@ def question():
             return render_template('questions.html', has_query=True, result=result, user_id=session.get('user_id'), logged_in=logged_in)
         else:
         # If not, just show all the questions that exist
-            #if request.method == 'GET':
-                logged_in = session.get('user_id') is not None
-                allresults =db.execute('SELECT question, category, asked_on, college, matriculation_year, subject, users.id FROM questions JOIN users ON (users.id = questions.user_id)'
-                                    ).fetchall()
-                print(allresults)
-                already_submit = session.get('user_id') in [allresults.id for allresults in allresults]
-    #    all_results= questions.query.all
-                return render_template('questions.html', has_query=False, allresults=allresults, user_id=session.get('user_id'), logged_in=logged_in)
+            if request.method == 'GET':
+    #            logged_in = session.get('user_id') is not None
+    #            allresults =db.execute('SELECT question_id, question, category, asked_on, college, matriculation_year, subject, users.id FROM questions JOIN users ON (users.id = questions.user_id)'
+    #                                ).fetchall()
+
+    #            already_submit = session.get('user_id') in [allresults.id for allresults in allresults]
+
+                allresults = db.execute('SELECT * FROM questions'
+                                ).fetchall()
+                return render_template('questions.html', has_query=False, allresults=allresults, user_id=session.get('user_id'))
 #    def viewquestion():
 #        return 'questions'
 
@@ -214,7 +238,7 @@ def course(course_id):
         # If method is GET, get all reviews for this book from database
             logged_in = session.get('user_id') is not None
 
-            reviews = db.execute('SELECT rating, review, users.id, email, reviewdate, review_on, college, matriculation_year FROM reviews JOIN users ON (users.id = reviews.user_id) WHERE reviews.course_id = :course_id;', {'course_id': course_id}).fetchall()
+            reviews = db.execute('SELECT rating, review, users.id, email, reviewdate, review_on, subject, college, matriculation_year FROM reviews JOIN users ON (users.id = reviews.user_id) WHERE reviews.course_id = :course_id;', {'course_id': course_id}).fetchall()
             already_submit = session.get('user_id') in [review.id for review in reviews]
 
             course_name = db.execute('SELECT * FROM subjects WHERE id = :course_id', {'course_id': course_id}).fetchone()
@@ -362,4 +386,3 @@ def get_gr_data(isbn):
         return None
 
     return gr_data
-
