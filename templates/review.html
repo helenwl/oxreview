@@ -53,7 +53,7 @@
         <th scope="col">Review</th>
         <th scope="col">Academic Year of review</th>
         <th scope="col">Review submitted on</th>
-        <th scope="col">User info</th>
+        <th scope="col">User info (includes matriculation year)</th>
       </tr>
       <tbody>
       {% for review in reviews %}
@@ -63,7 +63,7 @@
           <td>{{ review.review }}</td>
           <td>{{ review.reviewdate }}</td>
           <td>{{ review.review_on }}</td>
-          <td>{{ review.college }}, {{ review.matriculation_year }}</td>
+          <td>{{ review.subject }}, {{ review.matriculation_year }}, {{ review.college }}</td>
         </tr>
       {% endfor %}
       </tbody>
@@ -76,10 +76,10 @@
 {% endif %}
 <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
     <h3 class="w3-wide w3-center navy">Your Review</h3>
-</div>
+
 <div class="w3-container w3-theme-l5" id="contact">
-      <p class="w3-padding">What do you think? Your opinion matters, because no matter if your experience was good, bad,
-      or distinctly average, other students would really value knowing either way! </p>
+      <p class="w3-padding">What do you think? No matter if your experience was good, bad,
+      or distinctly average, other students would value knowing. </p>
 
       <form class="w3-container w3-card-4 w3-padding-16 w3-white w3-center" action="{{ url_for('course', course_id=course_name.id) }}" method="post">
 
@@ -111,7 +111,7 @@
       <button type="submit" class="w3-button w3-right w3-theme navy" style="color:white">Send</button>
       </form>
     </div>
-
 </div>
+
 
 {% endblock %}
