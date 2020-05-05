@@ -79,8 +79,8 @@
       <form class="w3-container w3-card-4 w3-padding-16 w3-white w3-center" action="{{ url_for('answers', question_id=question_name.id) }}" method="post">
 
       <div class="w3-section form-group" >
-        <label for="input-answer">Your Answer: the subject you study and year of matriculation will be posted alongside your answer.</label>
-        <input class="w3-input form-control" id="input-answer" type="text" name="answer" rows="5" required placeholder="Type your answer here. It can be as long or as short as you want." required>
+        <label for="input-answer">Your Answer: only the subject you study and year of matriculation will be posted alongside your answer.</label>
+        <textarea class="w3-input form-control w3-border" id="input-answer" type="text" name="answer" rows="5" required placeholder="Type your answer here. It can be as long or as short as you want." required></textarea>
       </div>
 
       <button type="submit" class="w3-button w3-right w3-theme navy" style="color:white">Send</button>
