@@ -32,7 +32,7 @@ h2, p{color:#141A77}
     <div class="w3-dropdown-hover w3-hide-small">
       <button class="w3-padding-large w3-button" title="Academic">Academic <i class="fa fa-caret-down"></i></button>
       <div class="w3-dropdown-content w3-bar-block w3-card-4">
-        <a href="{{ url_for('subject') }}" class="w3-bar-item w3-button">Subject Lecture Course Reviews</a>
+        <a href="{{ url_for('subject') }}" class="w3-bar-item w3-button">Subject Lecture Course/ Module Reviews</a>
     <!--    <a href="#" class="w3-bar-item w3-button">College Tutors</a> -->
         <a href="{{ url_for('departments') }}" class="w3-bar-item w3-button">General Department Reviews</a>
       </div>
@@ -69,9 +69,11 @@ h2, p{color:#141A77}
   <a href="{{ url_for('departments') }}" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">General Department Reviews</a>
 <!--  <a href="#contact" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Extra-Curricular</a> -->
   <a href="#question" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Post a question</a>
+{% if not user_id %}
 
-    <a href="{{ url_for('logout') }}" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Logout</a>
-
+{% else %}
+<a href="{{ url_for('logout') }}" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Logout</a>
+  {% endif %}
 </div>
 
 
@@ -112,7 +114,7 @@ h2, p{color:#141A77}
   <hr>
           <div class="form-group">
             <label>Your Question</label>
-            <input class="w3-input w3-border" type="text" placeholder="Question" required name="question">
+            <textarea class="w3-input w3-border" type="text" placeholder="Question" rows="3" required name="question"></textarea>
           </div>
 <hr>
           <div class="form-group">
