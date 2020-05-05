@@ -238,7 +238,7 @@ def course(course_id):
         # If method is GET, get all reviews for this book from database
             logged_in = session.get('user_id') is not None
 
-            reviews = db.execute('SELECT rating, review, users.id, email, reviewdate, review_on, subject, college, matriculation_year FROM reviews JOIN users ON (users.id = reviews.user_id) WHERE reviews.course_id = :course_id;', {'course_id': course_id}).fetchall()
+            reviews = db.execute('SELECT rating, review, difficulty, users.id, email, reviewdate, review_on, subject, college, matriculation_year FROM reviews JOIN users ON (users.id = reviews.user_id) WHERE reviews.course_id = :course_id;', {'course_id': course_id}).fetchall()
             already_submit = session.get('user_id') in [review.id for review in reviews]
 
             course_name = db.execute('SELECT * FROM subjects WHERE id = :course_id', {'course_id': course_id}).fetchone()
@@ -251,10 +251,11 @@ def course(course_id):
 
                 rating = request.form.get('rating')
                 review_text = request.form.get('review')
+                difficulty = request.form.get('difficulty')
                 reviewdate = request.form.get('reviewdate')
                 review_on=datetime.datetime.now().strftime("%d-%b-%Y at %H:%M")
-                db.execute('INSERT INTO reviews (rating, review, reviewdate, user_id, course_id, review_on) VALUES (:rating, :review, :reviewdate, :user_id, :course_id, :review_on)',
-                   {'rating': rating, 'review': review_text, 'reviewdate': reviewdate, 'user_id': session.get('user_id'), 'course_id': course_id, 'review_on':review_on})
+                db.execute('INSERT INTO reviews (rating, review, difficulty, reviewdate, user_id, course_id, review_on) VALUES (:rating, :review, :difficulty, :reviewdate, :user_id, :course_id, :review_on)',
+                   {'rating': rating, 'review': review_text, 'difficulty': difficulty, 'reviewdate': reviewdate, 'user_id': session.get('user_id'), 'course_id': course_id, 'review_on':review_on})
                 db.commit()
                 return redirect(url_for('course', course_id=course_id))
 
