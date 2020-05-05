@@ -7,8 +7,7 @@
 {% block main %}
     <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
       <h2 class="w3-wide">SUBJECTS: search</h2>
-  <p> Use the search bar to search. Enter: your lecture course name, your subject name, or a lecturer's name. Please
- capitalise all search terms.</p>
+  <p> Use the search bar to search. Enter: your lecture course/module name, your subject name, or a lecturer's name. </p>
 
     <form action="{{ url_for('subject') }}" method="get">
       <div class="form-group container" style="margin-right:auto;
@@ -20,14 +19,14 @@
         <i class="fa fa-paper-plane"></i> Search</button>
     </form>
     <button class="w3-button navy w3-section btn btn-primary"><a href="#add">
-      <i class="fa fa-plus-square"></i>  Add a lecture course that hasn't been reviewed before</a></button>
+      <i class="fa fa-plus-square"></i>  Add a lecture course/module that hasn't been reviewed before</a></button>
     {% if has_query %}
       {% if result %}
         <table class="w3-table-all table-striped body container">
           <thead class="thead-light">
             <tr class="w3-text-black">
               <th scope="col">Subject</th>
-              <th scope="col">Lecture Course Name</th>
+              <th scope="col">Lecture Course/Module Name</th>
               <th scope="col">Lecturer</th>
               <th scope="col">Year of Study</th>
             </tr>
@@ -44,12 +43,12 @@
           </tbody>
         </table>
       {% else %}
-      <h4 style="color:#141A77">No lecture courses have been found that match your query. This probably means
-        the course you're searching for hasn't been reviewed yet. If you want to add a lecture course to the
-        list, then add an entry to our database. You'll be the first person to review the course.
+      <h4 style="color:#141A77">No lecture courses/modules have been found that match your query. This probably means
+        the course you're searching for hasn't been reviewed yet. If you want to add a lecture course/module to the
+        list, then add an entry to our database. You'll be the first person to review it.
       </h4>
       <div class="w3-container w3-content" style="max-width:800px" id="add">
-          <h3 class="w3-wide w3-center navy">Add a lecture course to our database</h3>
+          <h3 class="w3-wide w3-center navy">Add a lecture course/module to our database</h3>
       </div>
       <div class="w3-container w3-theme-l5" id="add">
 
@@ -57,7 +56,7 @@
             <form class="w3-container w3-card-4 w3-padding-16 w3-white w3-center" action="{{ url_for('addsubject')}}" method="post">
 
               <div class="w3-section form-group" >
-                <label for="input-review">Lecture Course Information</label>
+                <label for="input-review">Lecture Course/Module Information</label>
                 <input class="w3-input form-control" id="input-name" type="text" name="course_name" rows="5" required placeholder="Name of lecture series" required>
               </div>
               <div class="form-group">
@@ -127,7 +126,7 @@
         <thead class="thead-light">
           <tr class="w3-text-black">
             <th scope="col">Subject</th>
-            <th scope="col">Lecture Course Name</th>
+            <th scope="col">Lecture Course/Module Name</th>
             <th scope="col">Lecturer</th>
             <th scope="col">Year of Study</th>
           </tr>
@@ -150,7 +149,7 @@
     <thead class="thead-light">
       <tr class="w3-text-black">
         <th scope="col">Subject</th>
-        <th scope="col">Lecture Course Name</th>
+        <th scope="col">Lecture Course/Module Name</th>
         <th scope="col">Lecturer</th>
         <th scope="col">Year of Study</th>
       </tr>
@@ -168,7 +167,7 @@
 </table>
 
 <div class="w3-container w3-content" style="max-width:800px" id="add" name="add">
-    <h3 class="w3-wide w3-center navy">Add a lecture course to our database</h3>
+    <h3 class="w3-wide w3-center navy">Add a lecture course/module to our database</h3>
 </div>
 <div class="w3-container  w3-theme-l5">
 
@@ -176,7 +175,7 @@
       <form class="w3-container w3-card-4 w3-padding-16 w3-white w3-center" action="{{ url_for('addsubject')}}" method="post">
 
         <div class="w3-section form-group" >
-          <label for="input-review">Lecture Course Information</label>
+          <label for="input-review">Lecture Course/Module Information</label>
           <input class="w3-input form-control" id="input-name" type="text" name="course_name" rows="5" required placeholder="Name of lecture series" required>
         </div>
         <div class="form-group">
