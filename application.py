@@ -47,7 +47,7 @@ db = scoped_session(sessionmaker(bind=engine))
 
 
 # Home route
-@app.route('/')
+@app.route('/Loginregister/')
 def index():
     return render_template('Login.html', user_id=session.get('user_id'))
 
@@ -108,7 +108,7 @@ def login():
                 flash('Wrong credentials', 'danger')
                 return render_template('login1.html', user_id=session.get('user_id'))
 #bringing the logged in user to the landing page
-@app.route('/landingpage/')
+@app.route('/')
 def landingpage():
     #if session.get('user_id') is None:
     #    flash('theOXREVIEW is for students of Oxford only. Please log in to access this webpage.')
@@ -129,27 +129,27 @@ def logout():
 # Search route for subject courses
 @app.route('/subject/', methods=['POST', 'GET'])
 def subject():
-    if session.get('user_id') is None:
-        flash('theOXREVIEW is for students of Oxford only. Please log in to access this webpage.')
-        return render_template('Login.html', user_id=session.get('user_id'))
-    else:
+#    if session.get('user_id') is None:
+#        flash('theOXREVIEW is for students of Oxford only. Please log in to access this webpage.')
+#        return render_template('Login.html', user_id=session.get('user_id'))
+#    else:
             if 'query' in request.args:
         # If 'query' is in request arguments, do the search and show results
                 query = request.args['query']
 
-                result = db.execute('SELECT * FROM subjects WHERE subject ILIKE :pattern OR course_name ILIKE :pattern OR lecturer ILIKE :pattern ORDER BY id DESC',
+                result = db.execute('SELECT * FROM subjects WHERE subject ILIKE :pattern OR course_name ILIKE :pattern OR lecturer ILIKE :pattern ORDER BY subject ASC',
                             {'pattern': f'%{query}%'}).fetchall()
 
                 return render_template('subject.html', has_query=True, result=result, user_id=session.get('user_id'))
             else:
         # If not, just show the search form
-                allsubjects = db.execute('SELECT * FROM subjects ORDER BY id DESC').fetchall()
+                allsubjects = db.execute('SELECT * FROM subjects ORDER BY subject ASC').fetchall()
                 return render_template('subject.html', has_query=False, allsubjects=allsubjects, user_id=session.get('user_id'))
 
 @app.route('/addsubject/', methods=['POST', 'GET'])
 def addsubject():
     if session.get('user_id') is None:
-        flash('theOXREVIEW is for students of Oxford only. Please log in to access this webpage.')
+        flash('theOXREVIEW is for students of Oxford only. You are not logged in so you will not be able to contribute. Please log in to access this webpage.')
         return render_template('Login.html', user_id=session.get('user_id'))
     else:
         if request.method == 'POST':
@@ -199,10 +199,10 @@ def postquestion():
 # search for a question/
 @app.route('/question/', methods=['POST', 'GET'])
 def question():
-    if session.get('user_id') is None:
-        flash('theOXREVIEW is for students of Oxford only. Please log in to access this webpage.')
-        return render_template('Login.html', user_id=session.get('user_id'))
-    else:
+#    if session.get('user_id') is None:
+#        flash('theOXREVIEW is for students of Oxford only. Please log in to access this webpage.')
+#        return render_template('Login.html', user_id=session.get('user_id'))
+#    else:
         if 'query' in request.args:
         # If 'query' is in request arguments, do the search and show results
             logged_in = session.get('user_id') is not None
@@ -230,10 +230,10 @@ def question():
 
 @app.route('/course/<int:course_id>/', methods=['POST', 'GET'])
 def course(course_id):
-    if session.get('user_id') is None:
-        flash('theOXREVIEW is for students of Oxford only. Please log in to access this webpage.')
-        return render_template('Login.html', user_id=session.get('user_id'))
-    else:
+    #if session.get('user_id') is None:
+    #    flash('theOXREVIEW is for students of Oxford only. Please log in to access this webpage.')
+    #    return render_template('Login.html', user_id=session.get('user_id'))
+    #else:
         if request.method == 'GET':
         # If method is GET, get all reviews for this book from database
             logged_in = session.get('user_id') is not None
@@ -243,11 +243,15 @@ def course(course_id):
 
             course_name = db.execute('SELECT * FROM subjects WHERE id = :course_id', {'course_id': course_id}).fetchone()
         #gr_data = get_gr_data(book.isbn)
-
+            flash('You are not logged in so you will not be able to contribute')
             return render_template('review.html', course_name=course_name, user_id=session.get('user_id'), logged_in=logged_in, reviews=reviews, already_submit=already_submit)
         #gr_data=gr_data)
         elif request.method == 'POST':
         # If method is POST, save new review in database
+            if session.get('user_id') is None:
+                flash('theOXREVIEW is for students of Oxford only. Please log in to access this webpage.')
+                return render_template('Login.html', user_id=session.get('user_id'))
+            else:
 
                 rating = request.form.get('rating')
                 review_text = request.form.get('review')
@@ -261,10 +265,10 @@ def course(course_id):
 
 @app.route('/answers/<int:question_id>/', methods=['POST', 'GET'])
 def answers(question_id):
-    if session.get('user_id') is None:
-        flash('theOXREVIEW is for students of Oxford only. Please log in to access this webpage.')
-        return render_template('Login.html', user_id=session.get('user_id'))
-    else:
+#    if session.get('user_id') is None:
+#        flash('theOXREVIEW is for students of Oxford only. Please log in to access this webpage.')
+#        return render_template('Login.html', user_id=session.get('user_id'))
+#    else:
         if request.method == 'GET':
         # If method is GET, get all reviews for this book from database
             logged_in = session.get('user_id') is not None
@@ -293,10 +297,10 @@ def answers(question_id):
 
 @app.route('/departments/', methods=['POST', 'GET'])
 def departments():
-    if session.get('user_id') is None:
-        flash('theOXREVIEW is for students of Oxford only. Please log in to access this webpage.')
-        return render_template('Login.html', user_id=session.get('user_id'))
-    else:
+    #if session.get('user_id') is None:
+    #    flash('theOXREVIEW is for students of Oxford only. Please log in to access this webpage.')
+    #    return render_template('Login.html', user_id=session.get('user_id'))
+    #else:
         if 'query' in request.args:
         # If 'query' is in request arguments, do the search and show results
             query = request.args['query']
@@ -318,10 +322,10 @@ def departments():
 
 @app.route('/departmentreviews/<int:department_id>/', methods=['POST', 'GET'])
 def departmentreviews(department_id):
-    if session.get('user_id') is None:
-        flash('theOXREVIEW is for students of Oxford only. Please log in to access this webpage.')
-        return render_template('Login.html', user_id=session.get('user_id'))
-    else:
+    #if session.get('user_id') is None:
+    #    flash('theOXREVIEW is for students of Oxford only. Please log in to access this webpage.')
+    #    return render_template('Login.html', user_id=session.get('user_id'))
+    #else:
         if request.method == 'GET':
         # If method is GET, get all reviews for this book from database
             logged_in = session.get('user_id') is not None
