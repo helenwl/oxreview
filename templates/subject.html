@@ -1,22 +1,40 @@
 <style media="screen">
+  a { text-decoration: none; }
+
+/* mouse over link */
+a:hover {
+ color: blue;
+}
+/* visited link */
+a:visited {
+
+}
 </style>
 {% extends "layout.html" %}
 {% block title %}Subject{% endblock %}
 <!-- Page content -->
-
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+ <ul class="flashes">
+    {% for message in messages %}
+     <div class="message_flash" style="color:red">{{ message }}</div>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
 {% block main %}
     <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
-      <h2 class="w3-wide">SUBJECTS: search</h2>
-  <p> Use the search bar to search. Enter: your lecture course/module name, your subject name, or a lecturer's name. </p>
+      <h2 class="w3-wide">SUBJECTS: filter and search</h2>
+  <p> Use the search bar to search. Enter: your subject name, or a more specific query </p>
 
     <form action="{{ url_for('subject') }}" method="get">
       <div class="form-group container" style="margin-right:auto;
     margin-left:auto;">
-        <label for="input-query">Search query</label>
-        <input type="search" class="form-control" id="input-query" name="query" placeholder="Enter keyword" required>
+        <label for="input-query">Filter</label>
+        <input type="search" class="form-control" id="input-query" name="query" placeholder="Keyword e.g. History" required>
       </div>
       <button type="submit" class="w3-button navy w3-section btn btn-primary">
-        <i class="fa fa-paper-plane"></i> Search</button>
+        <i class="fa fa-paper-plane"></i> Filter</button>
     </form>
     <button class="w3-button navy w3-section btn btn-primary"><a href="#add">
       <i class="fa fa-plus-square"></i>  Add a lecture course/module that hasn't been reviewed before</a></button>
@@ -53,6 +71,10 @@
       <div class="w3-container w3-theme-l5" id="add">
 
 <p> If you make a mistake when adding information, then email us to let us know (see the bottom of the page), and we'll fix it for you. </p>
+  {% if not user_id %}
+  <p style="color:red">You are not logged in so you won't be able to contribute. Please make an account to help our community out!</p>
+  {% else %}
+  {% endif %}
             <form class="w3-container w3-card-4 w3-padding-16 w3-white w3-center" action="{{ url_for('addsubject')}}" method="post">
 
               <div class="w3-section form-group" >
@@ -97,6 +119,7 @@
 <option>Religion</option>
                   </select>
               </div>
+              <hr>
               <div class="form-group">
                   <label for="input-lecturer">Name of lecturer(s)</label>
                 <input class="w3-input form-control" id="input-lecturer" type="text" name="lecturer" required placeholder="Name of lecturer for this course." required>
@@ -216,6 +239,7 @@
 <option>Religion</option>
             </select>
         </div>
+        <hr>
         <div class="form-group">
             <label for="input-lecturer">Name of lecturer(s)</label>
           <input class="w3-input form-control" id="input-lecturer" type="text" name="lecturer" required placeholder="Name of lecturer for this course." required>
@@ -233,8 +257,11 @@
 
             </select>
         </div>
-
-      <button type="submit" class="w3-button w3-right w3-theme navy" style="color:white">Send</button>
+        {% if not user_id %}
+        <p class="w3-center" style="color:black">You're not logged in so won't be able to contribute. Please make an account to help our community out!</p>
+        {% else %}
+        <button type="submit" class="w3-button w3-right w3-theme navy" style="color:white">Send</button>
+        {% endif %}
       </form>
     </div>
 
