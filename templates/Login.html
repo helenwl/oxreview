@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-  /* W3.CSS 4.13 June 2019 by Jan Egil and Borge Refsnes */
+/* W3.CSS 4.13 June 2019 by Jan Egil and Borge Refsnes */
 html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}
 /* Extract from normalize.css by Nicolas Gallagher and Jonathan Neal git.io/normalize */
 html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}
@@ -425,11 +425,11 @@ h2, p{color:#141A77}
 
 College mums and dads do a great job, but the aim of theOXREVIEW is to be a much wider platform on which students can <b>informally and anonymously review tutors, lecture courses, and give
 helpful advice to others in their year/in the years below </b> (something that has been done by word of mouth before!).</p>
-<p class="w3-justify"> You need to register to access this content, as it's only for students of the university. If you're just curious, you can access (just) our homepage via the preview button below.</p>
+<p class="w3-justify"> You need to register and log in to leave your reviews and ask questions, as it's only for students of the university.</p>
 
 </div>
 <div class="wrapper w3-padding-large">
-  <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;" class="button"><a href="{{ url_for('landingpage') }}">Preview</a></button>
+  <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;" class="button"><a href="{{ url_for('landingpage') }}">Home</a></button>
 </div>
 <div class="wrapper w3-padding-large">
   <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;" class="button"><a href="{{ url_for('login') }}">Login</a></button>
@@ -444,20 +444,16 @@ helpful advice to others in their year/in the years below </b> (something that h
       <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
       <img src="radcam.jpg" alt="Avatar" class="avatar">
     </div>
-
     <div class="container form-group">
       <label for="input-name-email"><b>Username</b></label>
       <input type="text" class="form-control" id="input-name-email" name="name_email" placeholder="Enter your name or email" required>
-
       <label for="input-password"><b>Password</b></label>
       <input type="password" class="form-control" id="input-password" name="password" placeholder="Enter password" required>
-
       <button type="submit">Log In</button>
       <label>
         <input type="checkbox" checked="checked" name="remember"> Remember me
       </label>
     </div>
-
     <div class="container form-group" style="background-color:#f1f1f1">
       <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
      <span class="psw">Forgot <a href="#">password?</a></span>
@@ -501,16 +497,12 @@ window.onclick = function(event) {
       <hr>
       <label for="input-email"><b>Email</b></label>
       <input type="email" class="form-control" id="input-email" name="email" placeholder="Enter your email" required>
-
       <label for="input-password1">Password</label>
       <input type="password" class="form-control" id="input-password1" name="pass1" placeholder="Enter password" required oninput="validatePassLength(this)">
       <small class="form-text text-muted">Your password should be at least 6 symbols long.</small>
-
       <label for="input-password2"><b>Repeat Password</b></label>
       <input type="password" class="form-control" id="input-password2" name="pass2" placeholder="Enter password again" required oninput="validatePasses(this)">
-
      <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
-
       <div class="clearfix">
         <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
         <button type="submit" class="signupbtn">Sign Up</button>
@@ -523,3 +515,4 @@ window.onclick = function(event) {
   <img class="w3-image" src="/static/images/skyline.jpg" alt="Architecture" width="1500" height="70"></img></div>
 
 </body>
+
