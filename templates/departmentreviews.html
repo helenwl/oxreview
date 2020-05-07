@@ -94,8 +94,12 @@
             <option>1</option>
           </select>
       </div>
-
+      {% if not user_id %}
+      <p class="w3-center" style="color:black">You're not logged in so won't be able to contribute. Please make an account to leave your opinion.</p>
+      {% else %}
       <button type="submit" class="w3-button w3-right w3-theme navy" style="color:white">Send</button>
+      {% endif %}
+
       </form>
     </div>
 
