@@ -16,7 +16,15 @@
 </style>
 
 
-
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+ <ul class="flashes">
+    {% for message in messages %}
+     <div class="message_flash" style="color:red">{{ message }}</div>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
 {% block title %}Reviews{% endblock %}
 
 {% block main %}
@@ -125,9 +133,12 @@
           <label for="input-date">Date</label>
         <input class="w3-input form-control" id="input-date" type="text" name="reviewdate" required placeholder="Academic year in which you took this course. e.g. 2018-2019" required>
       </div>
-
-
+      {% if not user_id %}
+      <p class="w3-center" style="color:black">You're not logged in so won't be able to contribute. Please make an account to leave your opinion.</p>
+      {% else %}
       <button type="submit" class="w3-button w3-right w3-theme navy" style="color:white">Send</button>
+      {% endif %}
+
       </form>
     </div>
 </div>
