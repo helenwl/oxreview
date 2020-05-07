@@ -82,8 +82,11 @@
         <label for="input-answer">Your Answer: only the subject you study and year of matriculation will be posted alongside your answer.</label>
         <textarea class="w3-input form-control w3-border" id="input-answer" type="text" name="answer" rows="5" required placeholder="Type your answer here. It can be as long or as short as you want." required></textarea>
       </div>
-
+      {% if not user_id %}
+      <p class="w3-center" style="color:black">You're not logged in so won't be able to contribute. Please make an account to leave your opinion.</p>
+      {% else %}
       <button type="submit" class="w3-button w3-right w3-theme navy" style="color:white">Send</button>
+      {% endif %}
       </form>
     </div>
 </div>
